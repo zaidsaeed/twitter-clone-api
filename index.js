@@ -1,12 +1,14 @@
 const express = require("express");
 
-const { createDB, testDBConnection } = require("./config/db");
+const { db, testDBConnection } = require("./config/db");
+
+const userRoutes = require("./routes/User");
 
 const app = express();
 
-const db = createDB();
-
 testDBConnection(db);
+
+app.use("/users", userRoutes);
 
 const PORT = process.env.PORT || 5000;
 
