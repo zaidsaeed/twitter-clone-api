@@ -1,19 +1,12 @@
 const express = require("express");
-const { Sequelize } = require("sequelize");
+
+const { createDB, testDBConnection } = require("./config/db");
 
 const app = express();
 
-const sequelize = new Sequelize("postgres", "postgres", "password", {
-  host: "twitter-clone-db.cezw9lbsfclc.us-west-2.rds.amazonaws.com",
-  dialect: "postgres",
-  port: 5432,
-});
+const db = createDB();
 
-//DB Test
-sequelize
-  .authenticate()
-  .then(() => console.log("Connection has been established successfully."))
-  .catch((err) => console.log(err));
+testDBConnection(db);
 
 const PORT = process.env.PORT || 5000;
 
