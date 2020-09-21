@@ -4,7 +4,13 @@ const { db, testDBConnection } = require("./config/db");
 
 const userRoutes = require("./routes/User");
 
+const bodyParser = require("body-parser");
+
 const app = express();
+
+//Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 testDBConnection(db);
 
