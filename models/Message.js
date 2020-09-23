@@ -3,7 +3,10 @@ const { db } = require("../config/db.js");
 const User = require("./User.js");
 
 const Message = db.define("message", {
-  username: { type: Sequelize.STRING, references: User.username },
+  username: {
+    type: Sequelize.STRING,
+    references: User.username,
+  },
   messageText: { type: Sequelize.STRING },
 });
 

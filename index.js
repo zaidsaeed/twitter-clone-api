@@ -24,8 +24,6 @@ User.hasMany(Message, {
   },
 });
 
-Message.belongsTo(User);
-
 app.use("/users", userRoutes);
 app.use("/messages", messageRoutes);
 
