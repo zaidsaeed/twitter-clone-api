@@ -16,19 +16,21 @@ router.post("/", (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
-  console.log("ey");
-});
-
 router.get("/:id", (req, res) => {
-  console.log("heress");
   Message.findByPk(req.params.id)
     .then((message) => {
-      return res.json(message);
+      if (message === null) {
+        res.status(404).send({
+          message: `A message with id : ${req.params.id} was not found`,
+        });
+      } else {
+        return res.json(message);
+      }
     })
     .catch((err) => {
-      console.log("err", err);
-      return err;
+      res
+        .status(500)
+        .send({ message: `Server Error: ${err.name} - ${err.message}` });
     });
 });
 
