@@ -11,8 +11,9 @@ router.post("/", (req, res) => {
       return res.json(message);
     })
     .catch((err) => {
-      console.log("err", err);
-      return err;
+      res
+        .status(500)
+        .send({ message: `Server Error: ${err.name} - ${err.message}` });
     });
 });
 
@@ -40,21 +41,25 @@ router.put("/:id", (req, res) => {
   Message.update(req.body, {
     where: { id: id },
   })
-    .then((num) => {
-      if (num == 1) {
+    .then((rowsUpdated) => {
+      if (rowsUpdated == 1) {
         res.send({
           message: "Message was updated successfully.",
         });
+      } else if (Object.keys(req.body).length === 0) {
+        res.status(500).send({
+          message: `Cannot update Message with id=${id}. Request does not have a body`,
+        });
       } else {
-        res.send({
-          message: `Cannot update Message with id=${id}. Maybe Message was not found or req.body is empty!`,
+        res.status(500).send({
+          message: `Cannot update Message with id=${id}. Message w/ the given id does not exist.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
-        message: "Error updating Message with id=" + id,
-      });
+      res
+        .status(500)
+        .send({ message: `Server Error: ${err.name} - ${err.message}` });
     });
 });
 
