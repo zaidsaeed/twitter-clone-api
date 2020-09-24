@@ -1,7 +1,17 @@
 const { Sequelize } = require("sequelize");
 
-const db = new Sequelize("postgres", "postgres", "password", {
+const testDB = {
+  host: "twitter-clone-testing.cezw9lbsfclc.us-west-2.rds.amazonaws.com",
+};
+
+const prodDB = {
   host: "twitter-clone-db.cezw9lbsfclc.us-west-2.rds.amazonaws.com",
+};
+
+const env = process.env.ENV || "prod";
+
+const db = new Sequelize("postgres", "postgres", "password", {
+  host: env === "prod" ? prodDB.host : testDB.host,
   dialect: "postgres",
   port: 5432,
 });

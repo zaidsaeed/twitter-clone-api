@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "test_start": "ENV=test node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest --env=node"
   },
   "author": "Zaid Saeed",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
