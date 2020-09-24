@@ -7,7 +7,11 @@ router.post("/", (req, res) => {
     .then((user) => {
       return res.json(user);
     })
-    .catch((err) => console.log("err", err));
+    .catch((err) =>
+      res
+        .status(500)
+        .send({ message: `Server Error: ${err.name} - ${err.message}` })
+    );
 });
 
 module.exports = router;
