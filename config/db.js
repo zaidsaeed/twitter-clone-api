@@ -14,6 +14,7 @@ const db = new Sequelize("postgres", "postgres", "password", {
   host: env === "prod" ? prodDB.host : testDB.host,
   dialect: "postgres",
   port: 5432,
+  logging: false,
 });
 
 const testDBConnection = (sequelize) => {

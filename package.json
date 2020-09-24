@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test_start": "ENV=test node index.js",
     "dev": "nodemon index.js",
-    "test": "ENV=test jest"
+    "test": "ENV=test jest --detectOpenHandles"
   },
   "jest": {
     "testEnvironment": "node",

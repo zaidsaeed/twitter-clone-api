@@ -12,7 +12,7 @@ const Message = db.define("message", {
 
 Message.sync()
   .then(() => {
-    console.log("Message table created");
+    // console.log("Message table created");
   })
   .catch((err) => {
     console.log("eer", err);

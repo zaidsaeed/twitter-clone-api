@@ -9,7 +9,7 @@ const User = db.define("user", {
 
 User.sync()
   .then(() => {
-    console.log("User table created");
+    // console.log("User table created");
   })
   .catch((err) => {
     console.log(err);

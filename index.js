@@ -1,20 +1,8 @@
-const express = require("express");
-
 const { db, testDBConnection } = require("./config/db");
+const app = require("./app.js");
 
 const User = require("./models/User");
 const Message = require("./models/Message");
-
-const userRoutes = require("./routes/User");
-const messageRoutes = require("./routes/Message");
-
-const bodyParser = require("body-parser");
-
-const app = express();
-
-//Body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 testDBConnection(db);
 
@@ -23,9 +11,6 @@ User.hasMany(Message, {
     name: "username",
   },
 });
-
-app.use("/users", userRoutes);
-app.use("/messages", messageRoutes);
 
 const PORT = process.env.PORT || 5000;
 
