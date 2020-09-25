@@ -1,0 +1,18 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "password",
+    "database": "postgres",
+    "host": "twitter-clone-db.cezw9lbsfclc.us-west-2.rds.amazonaws.com",
+    "dialect": "postgres",
+    "port": 5432
+  },
+  "test": {
+    "username": "postgres",
+    "password": "password",
+    "database": "postgres",
+    "host": "twitter-clone-testing.cezw9lbsfclc.us-west-2.rds.amazonaws.com",
+    "dialect": "postgres",
+    "port": 5432
+  }
+}

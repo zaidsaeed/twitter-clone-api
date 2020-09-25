@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
+const { db } = require("../config/db");
+const DataTypes = require("sequelize/lib/data-types");
+const User = require("../models/User")(db, DataTypes);
 
 router.post("/", (req, res) => {
   User.create({ username: req.body.username, password: req.body.password })

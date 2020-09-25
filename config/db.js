@@ -8,7 +8,7 @@ const prodDB = {
   host: "twitter-clone-db.cezw9lbsfclc.us-west-2.rds.amazonaws.com",
 };
 
-const env = process.env.ENV || "prod";
+const env = process.env.NODE_ENV || "prod";
 
 const db = new Sequelize("postgres", "postgres", "password", {
   host: env === "prod" ? prodDB.host : testDB.host,

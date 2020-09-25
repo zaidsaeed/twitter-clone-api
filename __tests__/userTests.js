@@ -1,9 +1,14 @@
-const request = require("supertest");
-var app = require("../app");
+const app = require("../app");
+const supertest = require("supertest");
+const request = supertest(app);
 
 describe("User Tests", () => {
-  it.only("should create a user", async (done) => {
-    const res = await request(app)
+  afterAll(() => {
+    request.close();
+  });
+
+  it("should create a user", async (done) => {
+    const res = await request
       .post("/users")
       .send({ username: "heloo", password: "testPass" });
     expect(res.statusCode).toEqual(200);

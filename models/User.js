@@ -1,19 +1,26 @@
-const { Sequelize } = require("sequelize");
-const { db } = require("../config/db.js");
-const Message = require("./Message");
-
-const User = db.define("user", {
-  username: { type: Sequelize.STRING, primaryKey: true },
-  password: { type: Sequelize.STRING },
-});
-
-User.sync()
-  .then(() => {
-    // console.log("User table created");
-  })
-  .catch((err) => {
-    console.log(err);
-    return err;
-  });
-
-module.exports = User;
+"use strict";
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class User extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+      User.hasMany(models.Messsage);
+    }
+  }
+  User.init(
+    {
+      username: { type: DataTypes.STRING, primaryKey: true },
+      password: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "User",
+    }
+  );
+  return User;
+};

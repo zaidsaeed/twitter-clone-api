@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Message = require("../models/Message");
+const { db } = require("../config/db");
+const DataTypes = require("sequelize/lib/data-types");
+const Message = require("../models/Message")(db, DataTypes);
 
 router.post("/", (req, res) => {
   Message.create({
