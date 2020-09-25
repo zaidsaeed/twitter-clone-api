@@ -1,25 +1,26 @@
-"use strict";
-const { Model } = require("sequelize");
+const { Sequelize } = require("sequelize");
+const { db } = require("../config/db.js");
+const User = require("./User.js");
 
-module.exports = (sequelize, DataTypes) => {
-  class Message extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      Message.belongsTo(models.User);
-    }
-  }
-  Message.init(
-    {
-      messageText: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: "Message",
-    }
-  );
-  return Message;
+const Message = db.define("Message", {
+  username: {
+    type: Sequelize.STRING,
+    references: User.username,
+  },
+  messageText: { type: Sequelize.STRING },
+});
+
+Message.associate = function (models) {
+  Message.hasOne(User, { foreignKey: "username" });
 };
+
+Message.sync()
+  .then(() => {
+    // console.log("Message table created");
+  })
+  .catch((err) => {
+    console.log("eer", err);
+    return err;
+  });
+
+module.exports = Message;

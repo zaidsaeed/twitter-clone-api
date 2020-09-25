@@ -10,6 +10,10 @@ module.exports = {
       username: {
         allowNull: false,
         type: Sequelize.STRING,
+        references: {
+          model: "Users", // name of Target model
+          key: "username", // key in Target model that we're referencing
+        },
       },
       messageText: {
         type: Sequelize.STRING,

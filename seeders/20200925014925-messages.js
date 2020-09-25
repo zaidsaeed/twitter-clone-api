@@ -17,6 +17,12 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          messageText: "MESSGE TEXT",
+          username: "tony",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
