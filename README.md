@@ -1,15 +1,15 @@
-Architecture overview:
+Architecture overview: <br>
 
-A postgresSQL database was used with two tables:
+A postgresSQL database was used with two tables: <br>
 
-User Table -> username (PK), password
-Messages Table -> id (PK), username (FK), messageText
+User Table -> username (PK), password <br>
+Messages Table -> id (PK), username (FK), messageText <br>
 
-The app uses a database for testing (which is reset to an initial state everytime npm run test is called) and another for dev/prod.
+The app uses a database for testing (which is reset to an initial state everytime npm run test is called) and another for dev/prod. <br>
 
-BACKEND URI: https://twittercloneklip.herokuapp.com/
+BACKEND URI: https://twittercloneklip.herokuapp.com/ <br>
 
-##API DOCUMENTATION
-GET /messages/:id -> in order to get a message with an ID
-PUT /messages/:id -> in order to edit a message with an ID
-POST /messages {username: username in user's table of database, messageText: 'messageText of the message'} -> in order to create a message
+##API DOCUMENTATION <br>
+GET /messages/:id -> in order to get a message with an ID <br>
+PUT /messages/:id -> in order to edit a message with an ID <br>
+POST /messages {username: username in user's table of database, messageText: 'messageText of the message'} -> in order to create a message <br>
