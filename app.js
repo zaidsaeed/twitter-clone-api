@@ -16,4 +16,8 @@ app.use(logger(":method :remote-addr :date[clf]"));
 app.use("/users", userRoutes);
 app.use("/messages", messageRoutes);
 
+if (process.env.NODE_env === "production") {
+  app.use(express.static("./build"));
+}
+
 module.exports = app;
