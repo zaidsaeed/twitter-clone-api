@@ -13,3 +13,4 @@ BACKEND URI: https://twittercloneklip.herokuapp.com/ <br>
 GET /messages/:id -> in order to get a message with an ID <br>
 PUT /messages/:id -> in order to edit a message with an ID <br>
 POST /messages {username: username in user's table of database, messageText: 'messageText of the message'} -> in order to create a message <br>
+Please visit: https://documenter.getpostman.com/view/3799100/TVKG1weF for official api documentation
