@@ -45,4 +45,32 @@ describe("Message Tests", () => {
     expect(res.statusCode).toEqual(500);
     done();
   });
+
+  it("should edit a message; change message string", async (done) => {
+    const init = await request.get("/messages/1");
+    expect(JSON.parse(init.text).messageText).toEqual("MESSGE TEXT");
+    const res = await request.put("/messages/1").send({ messageText: "MESSF" });
+    expect(res.statusCode).toEqual(200);
+    const after = await request.get("/messages/1");
+    expect(JSON.parse(after.text).messageText).toEqual("MESSF");
+    done();
+  });
+
+  it("should edit a message; change message user to a valid user", async (done) => {
+    const init = await request.get("/messages/1");
+    expect(JSON.parse(init.text).username).toEqual("emre@smith.com");
+    const res = await request.put("/messages/1").send({ username: "tony" });
+    expect(res.statusCode).toEqual(200);
+    const after = await request.get("/messages/1");
+    expect(JSON.parse(after.text).username).toEqual("tony");
+    done();
+  });
+
+  it("should not update a message with an invalid user", async (done) => {
+    const res = await request
+      .put("/messages/1")
+      .send({ username: "invalid_user" });
+    expect(res.statusCode).toEqual(500);
+    done();
+  });
 });
