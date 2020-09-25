@@ -11,7 +11,7 @@ const prodDB = {
 const env = process.env.NODE_ENV || "prod";
 
 const db = new Sequelize("postgres", "postgres", "password", {
-  host: env === "prod" ? prodDB.host : testDB.host,
+  host: env === "test" ? testDB.host : prodDB.host,
   dialect: "postgres",
   port: 5432,
   logging: false,
