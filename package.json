@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "jest": "^26.4.2",
+    "morgan": "^1.10.0",
     "sequelize-cli": "^6.2.0",
     "supertest": "^4.0.2"
   }
